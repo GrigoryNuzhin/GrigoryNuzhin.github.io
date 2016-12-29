@@ -1,0 +1,237 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+/* Добавил некий текст */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* ######################## game.css ######################## */
+body{
+    font-family: 'Times New Roman';
+}
+
+#content-game, #victory, #game-over{
+    margin: 20px auto;
+    width: 384px;
+    padding-right: 10px;
+}
+
+
+#gaming-field {
+    margin-top: 5px;
+    position: relative;
+    line-height: 0;
+    padding-left: 1px;
+}
+
+#hp {
+    position: relative;
+    z-index: 1;
+    height: 18px;
+    padding-left: 5px;
+    opacity: 0.91;
+    cursor: default;
+    display: block;
+}
+
+#repeat {
+    top: -3px;
+    right: -6px;
+    transform: rotate(-30deg);
+    z-index: 2;
+    display: block;
+    font-size: 25px;
+    position: absolute;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.64);
+}
+
+#gaming-field div {
+    position: relative;
+    display: inline-block;      
+}
+#gaming-field{width: 104%;}
+
+.debbug{
+    background: blue;
+}
+
+
+/* .message */
+.message{
+    background: #353535;
+    position: relative;
+    width: 400px;
+    height: 293px;
+}
+.message > div {
+    width: 100%;
+    height: 100%;
+    display: table;
+    top: 0;
+    left: 0;    
+}
+
+.message > div > div {
+    display: table-cell;
+    vertical-align: middle;
+}
+    
+.green, .red {
+    width: 100%;
+    display: block;
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+}
+.green{
+    background: green;}
+.red{
+    background: red;} 
+
+
+/* cube */
+#wrapper-cube-game {
+    margin: auto;
+    width: 416px;
+}
+
+#wrapper-cube-game > div {
+    transition: .9s;
+    position: relative;
+    transform-origin: 50% 50% -128px;
+    transform-style: preserve-3d;
+    transform: rotateX(0deg);
+}
+
+
+body #content-game, body #game-over, body #victory {
+    height: 299px;
+}
+
+body #wrapper-cube-game #game-over{
+    transform: rotateX(-90deg) rotateY(0deg);
+}
+
+body #wrapper-cube-game #victory{
+    transform: rotateX(90deg) rotateY(0deg);
+}
+#game-over,
+#victory{backface-visibility: hidden;}
+body #content-game > div,
+body #victory > div,
+body #game-over > div {
+ position: absolute;
+ transform-origin: 50% 50% -148px;
+}
+
+body #wrapper-cube-game .message:nth-child(1) {
+  transform: rotateX(90deg);
+}
+
+body #wrapper-cube-game .message:nth-child(2) {
+  transform: rotateX(-90deg);
+}
+
+/* end cube */
+
+
+.open, .open-animation {
+    transform: rotateY(180deg);
+}
+
+.ico div {
+    transition: 0.5s;
+    transform-style: preserve-3d;
+    padding-left: 2px;
+    padding-bottom: 2px;
+    cursor: pointer;
+}
+
+
+.ico div :first-child {
+    position: absolute;
+    top: 2px;
+    left: 3px;
+    transform: rotateY(180deg);
+}
+
+.ico div :last-child{
+    position: relative;
+    backface-visibility: hidden;
+}
+
+#screen-game::before {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 400px;
+    height: 298px;
+    background: url('img/bg.jpg');
+}
+
+#screen-game::after {
+    position: absolute;
+    top:0;
+    left:0;
+    content: "";
+    display: block;
+    width: 400px;
+    height: 19px;
+    background: rgba(255, 255, 255, 0.62);
+}
+
+/* Ico license */
+
+ .license{
+    width: 400px;
+    padding-left: 3px;
+    margin: 200px auto;
+    color: #d2d2d2;
+ }
+
+ .license a{
+     color: #d2d2d2;
+ }
