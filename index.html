@@ -4,39 +4,90 @@
 <head>
     <meta charset="UTF-8">
     <title>Портфолио</title>
-    <style>
-    	main{
-    		width: 500px;
-    		margin: 20px auto;
-    	}
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="style.css" rel="stylesheet" media="screen">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
 </head>
 
 <body>
-    <main>
-    	<h1>Портфолио</h1>
-    	<h2>Тестовые пример игры на HTML5/CSS3/JS</h2>
-    	<a href="https://grigorynuzhin.github.io/test/4/">https://grigorynuzhin.github.io/test/4/</a>
-    	<h2>Тестовые примеры верстки</h2>
-    	<a href="https://grigorynuzhin.github.io/test/1/">https://grigorynuzhin.github.io/test/1/</a>
-    	<br>
-    	<a href="https://grigorynuzhin.github.io/test/2/">https://grigorynuzhin.github.io/test/2/</a>
-    	<br>
-    	<a href="https://grigorynuzhin.github.io/test/3/">https://grigorynuzhin.github.io/test/3/</a>
-    	<br>
-    	<h2>Маленькая шпаргалка git команд</h2>
-    	<p>git init
-    	    <br> git status
-    	    <br> git add .
-    	    <br> git status
-    	    <br> git commit -m "first commit"
-    	    <br> git status
-    	    <br> git remote add origin https://github.com/GrigoryNuzhin/game.git
-    	    <br> git push -u origin master
-    	    <br> git push origin master
-			<br>git clone https://github.com/GrigoryNuzhin/GrigoryNuzhin.github.io.git
-    	    </p>
+    <main class="container">
+        <div class="text-center">
+            <div id='coin-slider'>
+                <a href="test/test4.html" target="_blank">
+                    <img src='img/game.jpg' alt="game.jpg">
+                    <span>
+                    Тестовые пример игры на память
+                </span>
+                </a>
+                <a href="test/test1.html" target="_blank">
+                    <img src='img/simple.jpg' alt="simple.jpg">
+                    <span>
+                    Тестовые задания 1
+                </span>
+                </a>
+                <a href="test/test2.html">
+                    <img src='img/club.jpg' alt="club.jpg">
+                    <span>
+                    Тестовые задания 2
+                </span>
+                </a>
+                <a href="test/test3.html">
+                    <img src='img/test3.jpg' alt="test3.jpg">
+                    <span>
+                    Тестовые задания 3
+                </span>
+                </a>
+                <a href="http://workshop.rs/2010/04/coin-slider-image-slider-with-unique-effects/">
+                    <img src='img/workshop.jpg' alt="workshop">
+                    <span>
+                    Сайт слайдера
+                </span>
+                </a>
+            </div>
+        </div> <!-- .text-center -->
+        
+<h1>О себе</h1>
+<p>Здравствуйте, я человек, который путём самообразования довёл «HTML5» и «CSS3» до среднего уровня. Практически отлично выучил нативный «JavaSkript+ES6» и поднял его клинскую часть, до приемлемого уровня. Благодаря чему даже смог написать небольшую игру на основе DOM модели с применениями технологий  «HTML5», «CSS3» и «JS» см. в достижениях. Освоил так же и «jQuery» на неплохом уровне.</p>
+<p>Теперь у меня следующая цель - я нуждаюсь в ваших заказах! Причём пока планирую начинать с небольших и постепенно увеличивать их уровень сложности. Сейчас это необходимо для меня, для того чтобы я смог и дальше развиваться в этом направлении. Ведь планы у меня большие ещё многое нужно изучить «React», «Redux», «NodeJS», «MongoDB», «Webpack/Gulp», «Lodash/Underscore», «ImmutableJS» и т.д. А чтобы это всё изучить, нужно хорошо проработать уже выученный стек технологий  «JavaSkript + ES6 + DOM» (благо встречаются и такие заказы). Ведь важно не только знать, но и стремится делать это быстро. А после того как, это, быстро, будет достигнуто, можно будет приступить к изучению запланированных мной технологий.</p>
+
+
+<p>Ну что Вы помогаете мне, я помогаю Вам, ну как договорились? Выполнение работы не бесплатно конечно ;-), но за разумные деньги)))?</p>
+<p>Вот мой skype: <a href="skype:zet_x6?call">zet_x6</a>, а вот моя электронная почта: <a href="mailto:web.g.nj@gmail.com">web.g.nj@gmail.com</a></p>
+<p>Все ещё не убедил? Ок, вот смотрите мои достижения.</p>
+<h2>Достижения</h2>
+
+<h3>Тестовые пример игры на HTML5/CSS3/JS</h3>
+<p><a href="https://grigorynuzhin.github.io/test/4/">https://grigorynuzhin.github.io/test/4/</a> - эта игра в которой нужно открыть две одинаковых иконки, если ошиблись, то убавляется один огонёк, а  те две иконки спрячутся за иконку консоли. В случаи если все огоньки закончатся, то игра повернёт куб, с сообщением что вы проиграли. А если огоньки ещё остались и вы перевернули все плитки кроме двух последних, то сначала система этой игры откроет их, а потом также повернёт куб уже другой стороной, с сообщением о том, что вы выиграли с количеством набранных очков.</p>
+<p>Очки зависят от времени, чем быстрее вы откроите нужно количество иконок тем больше очков вы заработаете. Отсчёт ведётся с первой открытой плитки. Всегда можно начать с начало с помощью этой «⟳» кнопки.</p>
+<h3>Тестовые примеры вёрстки</h3>
+<p><a href="https://grigorynuzhin.github.io/test/1/">https://grigorynuzhin.github.io/test/1/</a> - первый пример вёрстки, здесь нужно было прижать футор к низу.</p>
+<p><a href="https://grigorynuzhin.github.io/test/2/">https://grigorynuzhin.github.io/test/2/</a> - это второй пример вёрстки здесь была необходимость сделать макет растягивающимся.</p>
+<p><a href="https://grigorynuzhin.github.io/test/3/">https://grigorynuzhin.github.io/test/3/</a> - это третий макет, где было много разных мелких деталей, благодаря чему при его вёрстке я получил много опыта.</p>
+<p>Вы можете заметить, что в этих работах везде использовано много разных селекторов, в место множества обычных классов и других похожих атрибутов, то есть, например очень редко можно будет встретить тег с двумя классами, а где-то даже и просто один класс в теге.</p>
+<p>Это я сделал специально, для того чтобы лучше разобраться со всеми селекторами. Возможно даже этот подход будет кому-то интересен, в целях увеличения скорости загрузки HTML, такие требования могут встретится, например в SEO. Но следует помнить, что это увеличивает срок вёрстки и усложняет изменения в проекте, например когда нужно будет переставить какой-нибудь элемент на другое место.</p>
+<p>Мои контакты для связи skype: <a href="skype:zet_x6?call">zet_x6</a> и электронная почта: <a href="mailto:web.g.nj@gmail.com">web.g.nj@gmail.com</a></p>
     </main>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="//code.jquery.com/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="coin-slider/coin-slider.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#coin-slider').coinslider({
+            width: 561,
+            height: 372,
+            navigation: true,
+            delay: 5000
+        });
+    });
+    </script>
 </body>
 
 </html>
