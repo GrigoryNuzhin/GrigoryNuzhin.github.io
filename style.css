@@ -2,10 +2,24 @@
 .coin-slider a{ text-decoration: none; outline: none; border: none;}
 
 .cs-buttons { font-size: 0px; padding: 10px; float: left; }
-.cs-buttons a { margin-left: 5px; height: 10px; width: 10px; float: left; border: 1px solid #B8C4CF; color: #B8C4CF; text-indent: -1000px; }
+
+.cs-buttons a {
+    margin-left: 5px;
+    height: 10px;
+    width: 10px;
+    float: left;
+    border: 1px solid #B8C4CF;
+    color: #B8C4CF;
+    text-indent: -1000px;
+}
+
+.cs-buttons a:first-child{
+	margin-left: -3px;
+}
+
 .cs-active { background-color: #B8C4CF; color: #FFFFFF; }
 
-.cs-title { width: 561px; padding: 10px; background-color: #000000; color: #FFFFFF; }
+.cs-title {width: 100%; padding: 10px; background-color: #000000; color: #FFFFFF;}
 
 .cs-prev, 
 .cs-next { background-color: #000000; color: #FFFFFF; padding: 0px 10px; }
@@ -18,14 +32,141 @@
 
 /* Сайт */
 body{
-	background: url('img/bg.jpg') top center fixed;
+	background: url('img/bg.png') top center fixed;
 }
+
+/* Своя кастомная анимация */
+body > nav {
+    margin: 35px auto/*  50px auto */;
+    width: 66px;
+    font-size: 100px;
+    cursor: pointer;
+    line-height: 69px;
+    /* text-shadow: 1px 1px 2px black */;
+    animation: checkMark 1.5s linear 0s infinite;
+}
+body > nav:hover{
+	animation-play-state: paused;
+}
+@keyframes checkMark{
+	0% {
+		transform: translate(0, -20px);
+	} 
+	50% {
+		transform: translate(0, 20px);
+	}
+	100% {
+		transform: translate(0, -20px);
+	}
+}
+
+/* Контент */
 .container {
     width: 750px;
-    margin: 59px auto;
+    margin: 0px auto;
     padding: 26px;
-    background: #f5f5f5;
-    border-radius: 5px;
-    box-shadow: 0 8px 15px rgba(0,0,0,.6);
+    /* background: #f5f5f5; */
     line-height: 1.5;
+}
+
+/* Чат */
+section p {
+    border-radius: 25px;
+    padding: 20px;
+    position: relative;
+    color: #fff;
+    box-shadow: 0 0 8px #000;
+    width: 93%;
+}
+
+section p::after,
+section p::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 25px;
+    box-shadow: 0 0 8px #000;
+    z-index: -1;
+}
+
+section p::before {/* Накладываем поверх, чтобы скрыть следы тени */
+    z-index: 1;
+    box-shadow: none;
+}
+
+section p:nth-child(even) {
+    border: 1px solid green;
+    background: green;
+    clear: both;
+}
+
+section p:nth-child(even)::after,
+section p:nth-child(even)::before {
+    background: green;
+    left: -11px;
+    bottom: 26px;
+    transform: rotate(-141deg);
+}
+
+/* .right message */
+
+section p:nth-child(odd) {
+    border: 1px solid blue;
+    background: blue;
+    float: right;
+   }
+
+section p:nth-child(odd)::after, section p:nth-child(odd)::before {   
+    background: blue;
+    right: -11px;
+    bottom: 26px;
+    transform: rotate(141deg);
+}
+.content > div {
+	position: relative;
+	margin: 20px;
+	height: 300px;
+	overflow: hidden;
+	border-radius: 20px;
+	border: 1px solid;
+	padding: 5px;
+}
+
+.content > div h3 {
+	margin: 4px;
+}
+
+.content > div a img {
+	width: 200px;
+}
+
+.content > div .show {
+	position: absolute;
+	border-top: 1px solid #000;
+	top: 235px;
+	left: 0;
+	width: 100%;
+	padding: 5px 5px 0px;
+}
+
+.content > div .show::before {
+	content: "";
+	position: absolute;
+	display: block;
+	width: inherit;
+	top: 0px;
+	left: 0;
+	height: 62px;
+	border-radius: 0 0 20px 20px;
+	border-bottom: inherit;
+    background: #f5f5f5;
+    background: linear-gradient(to top, #f5f5f5 20%, rgba(245, 245, 245, 0.48));
+}
+
+.content > div nav {
+	position: absolute;
+    top: 13px;
+    right: 11px;
+    font-size: 53px;
+    line-height: 38px;
 }
