@@ -38,7 +38,7 @@ main{
 	position: relative;
 	z-index: 5;
 	background: url('img/bg.jpg') top center fixed;
-	margin-bottom: 456px;
+	margin-bottom: 640px;
 	padding-bottom: 125px;
 }
 
@@ -207,7 +207,7 @@ footer {
     position: fixed;
     margin: 50px auto 50px;
     top: auto;
-    bottom: 40px;
+    bottom: 160px;
     left: 0;
     right: 0;
     /* box-shadow: 0 8px 15px rgba(0,0,0,.6); */
