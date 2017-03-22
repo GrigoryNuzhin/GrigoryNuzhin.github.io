@@ -32,14 +32,14 @@
 
 /* Сайт */
 body{
-	background: url(img/bg_pr.jpg) bottom;
+	background: url("img/bg_pr.jpg") 10px 208px;
 }
 main{
 	position: relative;
-	z-index: 5;
-	background: url('img/bg.jpg') top center fixed;
-	margin-bottom: 640px;
-	padding-bottom: 125px;
+    z-index: 5;
+    background: url("img/bg.jpg") top center fixed;
+    margin-bottom: 366px;
+    padding-bottom: 29px;
 }
 
 /* Своя кастомная анимация */
@@ -199,19 +199,18 @@ section p.few-text {
 
 
 footer {
-    position: relative;
-	padding: 10px !important;
-	background: #f5f5f5;
-	z-index: 0;
+    padding: 10px !important;
+    background: #f5f5f5;
+    z-index: 0;
     width: 950px;
     position: fixed;
     margin: 50px auto 50px;
     top: auto;
-    bottom: 160px;
+    bottom: 18px;
     left: 0;
     right: 0;
     /* box-shadow: 0 8px 15px rgba(0,0,0,.6); */
-    box-shadow: inset -20px -20px 15px rgb(254, 253, 101), inset 20px 18px 15px rgb(141, 255, 69);    
+    box-shadow: inset -20px -20px 15px rgb(254, 253, 101), inset 20px 18px 15px rgb(141, 255, 69);
     border-radius: 20px;
     text-align: center;
     font-size: 48px;
