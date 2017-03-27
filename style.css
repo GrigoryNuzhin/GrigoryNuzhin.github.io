@@ -14,7 +14,7 @@
 }
 
 .cs-buttons a:first-child{
-	margin-left: -3px;
+    margin-left: -3px;
 }
 
 .cs-active { background-color: #B8C4CF; color: #FFFFFF; }
@@ -26,16 +26,16 @@
 
 .coin-slider #cs-navigation-coin-slider a:focus,
 .coin-slider #cs-navigation-coin-slider a:hover{
-	color: #fff;
+    color: #fff;
 }
 
 
 /* Сайт */
 body{
-	background: url("img/bg_footer.jpg") -250px 208px;
+    background: url("img/bg_footer.jpg") -250px 208px;
 }
 main{
-	position: relative;
+    position: relative;
     z-index: 5;
     background: url("img/bg.jpg") top center fixed;
     margin-bottom: 366px;
@@ -53,18 +53,18 @@ main > nav {
     animation: checkMark 1.5s linear 0s infinite;
 }
 main > nav:hover{
-	animation-play-state: paused;
+    animation-play-state: paused;
 }
 @keyframes checkMark{
-	0% {
-		transform: translate(0, -20px);
-	} 
-	50% {
-		transform: translate(0, 20px);
-	}
-	100% {
-		transform: translate(0, -20px);
-	}
+    0% {
+        transform: translate(0, -20px);
+    } 
+    50% {
+        transform: translate(0, 20px);
+    }
+    100% {
+        transform: translate(0, -20px);
+    }
 }
 
 /* Контент */
@@ -87,17 +87,17 @@ section p {
 }
 
 section p a {
-	color: #6bf7e8;
-	text-decoration: underline;
+    color: #6bf7e8;
+    text-decoration: underline;
 }
 
 section p a:hover {
-	color: #6bf7e8;
-	text-decoration: none;
+    color: #6bf7e8;
+    text-decoration: none;
 }
 section p a:focus {
-	color: #6bf7e8;
-	text-decoration: none;
+    color: #6bf7e8;
+    text-decoration: none;
 }
 section p:nth-child(even) {
     border: 1px solid green;
@@ -109,7 +109,7 @@ section p:nth-child(odd) {
     border: 1px solid blue;
     background: blue;
     float: right;
-   }
+}
 
 section p::after,
 section p::before {
@@ -141,55 +141,86 @@ section p:nth-child(odd)::after, section p:nth-child(odd)::before {
 }
 
 section p.few-text {
-	padding: 30px 20px;
+    padding: 30px 20px;
 }
 
 /* закрытие чата */
 .content > div {
-	position: relative;
-	margin: 20px;
-	height: 300px;
-	overflow: hidden;
-	border-radius: 20px;
-	border: 1px solid;
-	padding: 5px;
-	background: url('img/bg_pr.jpg');
+    position: relative;
+    margin: 20px;
+    height: 300px;
+    border-radius: 20px;
+    border: 1px solid;
+    padding: 5px;
+    background: url('img/bg_pr.jpg');
 }
 
 .content > div h3 {
-	margin: 4px;
+    margin: 4px;
 }
 
 .content > div a img {
-	width: 200px;
+    width: 200px;
 }
 
-.content > div .show {
-	position: absolute;
-	border-top: 1px solid #000;
-	top: 235px;
-	left: 0;
-	width: 100%;
-	padding: 5px 10px 0px 16px;
-	line-height: 1.209;
+.content > div .disappear {
+    position: absolute;
+    border-top: 1px solid #000;    
+    overflow: hidden;
+    top: 235px;
+    left: 0;
+    height: 63px;
+    width: 100%;
+    padding: 5px 10px 0px 16px;
+    line-height: 1.209;
+}
+
+.content > div .disappear::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: inherit;
+    top: 0px;
+    left: 0;
+    height: 62px;
+    border-radius: 0 0 20px 20px;
+    border-bottom: inherit;
+    background: #f5f5f5;
+    background: linear-gradient(to top, #f5f5f5 20%, rgba(245, 245, 245, 0.48));
+}
+
+.content > div .show div {
+    position: absolute;
+    border-top: 1px solid #000;    
+    overflow: hidden;
+    top: 235px;
+    left: 0;
+    width: 90%;
+    padding: 5px 10px 0px 16px;
+    line-height: 1.209;
+    z-index: 1;
+    background: #f5f5f5;
+    border: 1px solid f5f5f5;
+    border-radius: 0 0 20px 20px;
 }
 
 .content > div .show::before {
-	content: "";
-	position: absolute;
-	display: block;
-	width: inherit;
-	top: 0px;
-	left: 0;
-	height: 62px;
-	border-radius: 0 0 20px 20px;
-	border-bottom: inherit;
+    content: "";
+    position: absolute;
+    display: block;
+    width: inherit;
+    z-index: 1;
+    height: 100%;
+    top: 0px;
+    left: 0;
+    border-radius: 0 0 20px 20px;
+    border-bottom: inherit;
     background: #f5f5f5;
     background: linear-gradient(to top, #f5f5f5 20%, rgba(245, 245, 245, 0.48));
 }
 
 .content > div nav {
-	position: absolute;
+    position: absolute;
     top: 13px;
     right: 11px;
     font-size: 53px;
