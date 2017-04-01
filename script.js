@@ -1,7 +1,8 @@
-
 var showDisappear = $('.content > div .disappear'),
     divs = showDisappear.children('div'),
     DISAPPEARHEIGHT = 63;
+
+showDisappear.children('div').wrapInner("<div class='wrapper'></div>");
 
 for (var i = 0; i < divs.length; i++) {
     divs[i].parentElement.className = "show";
@@ -10,20 +11,28 @@ for (var i = 0; i < divs.length; i++) {
     divs[i].parentElement.className = "disappear";
 }
 
-showDisappear.children('div').wrapInner("<div class='wrapper'></div>");
+
+
+function fDisappear(elem1, elem2, time) {
+    $(elem1).animate({ height: DISAPPEARHEIGHT + "px" }, time, (function() {
+        elem2.className = "disappear";
+    }));
+}
 
 showDisappear.on('click', function(e) {
     var div = $(this).children('div')[0],
-        time = 500;
+        time = 500,
+        divShow = $('.show');
     if (this.className == "disappear") {
+        fDisappear(divShow.children("div")[0], divShow[0], time);
         this.className = "show";
-        $(div).animate({ height: div.defaultHeight }, time);
+        this.style.zIndex = "3";
+        $(div).animate({ height: div.defaultHeight }, time, (function() { this.style.zIndex = ""; }).bind(this));
 
     } else {
-        if(e.target.tagName != 'NAV') return;
-        $(div).animate({ height: DISAPPEARHEIGHT + "px" }, time, (function() {
-            this.className = "disappear";
-        }).bind(this));
+        if (e.target.tagName != 'NAV') return;
+
+        fDisappear(div, this, time);
 
     }
 });
