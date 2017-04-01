@@ -196,8 +196,8 @@ section p.few-text {
 .content > div .show{
     z-index: 2;
 }
-.content > div .show div{
-    
+.content > div .show > div{
+    overflow: hidden;
     padding: 8px 15px 8px 18px;
     background: #fff;
     /* background: url('img/bg_footer.jpg'); */
@@ -211,30 +211,51 @@ section p.few-text {
     background: transparent;
 }
 
-.content > div .show::before {
+.content > div .show .wrapper::before {
     content: '';
     float: right;
     z-index: 3;   
-    height: 46px;
-    width: 38px;
-    background: green;
+    height: 38px;
+    width: 23px;
+    /* background: green; */
 }
-
+.content > div .show .wrapper::after{ /* fix overflow: hidden; padding */
+    content: '';
+    border-radius: 0 0 20px 20px;
+    position: absolute;
+    z-index: 3;
+    height: 18px;
+    width: 271PX;
+    left: 9px;
+    bottom: 0;
+    background: #fff;
+}
 .content > div .show nav {    
     transform: rotate(-180deg);    
 }
 
-.content > div .show,.content > div .show div,
+
+/* .content > div .show > div,
 .content > div .show::after,
 .content > div .show::before,
 .content > div .show nav{
     transition: height 5s, clip 5s;
+} */
+.content > div *{
+    transition: height 5s/* , clip 5s */;
 }
 
 
+/* .content > div .disappear > div,
+.content > div .disappear::after,
+.content > div .disappear::before,
+.content > div .disappear nav {
+    
+} */
 
 .content > div nav {
     position: absolute;
+    z-index: 4;
     top: 13px;
     right: 11px;
     font-size: 53px;
