@@ -168,7 +168,7 @@ section p.few-text {
     clip: rect(0, auto, 62px, 0);
 }
 
-.content > div .disappear div{}
+
 .content > div .disappear::after,.content > div .show::after {
     content: "";
     position: absolute;
@@ -192,7 +192,7 @@ section p.few-text {
     line-height: 1.209;
     z-index: 1;
 }
-
+.content > div .show div{min-height: 63px;}
 .content > div .show{
     z-index: 2;
 }
@@ -241,9 +241,7 @@ section p.few-text {
 .content > div .show nav{
     transition: height 5s, clip 5s;
 } */
-.content > div *{
-    transition: height 5s/* , clip 5s */;
-}
+
 
 
 /* .content > div .disappear > div,
