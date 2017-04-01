@@ -12,7 +12,7 @@ for (var i = 0; i < divs.length; i++) {
 
 showDisappear.children('div').wrapInner("<div class='wrapper'></div>");
 
-showDisappear.click(function() {
+showDisappear.on('click', function(e) {
     var div = $(this).children('div')[0],
         time = 500;
     if (this.className == "disappear") {
@@ -20,7 +20,7 @@ showDisappear.click(function() {
         $(div).animate({ height: div.defaultHeight }, time);
 
     } else {
-
+        if(e.target.tagName != 'NAV') return;
         $(div).animate({ height: DISAPPEARHEIGHT + "px" }, time, (function() {
             this.className = "disappear";
         }).bind(this));
