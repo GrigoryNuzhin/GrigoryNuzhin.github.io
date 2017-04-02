@@ -1,6 +1,6 @@
 var showDisappear = $('.content > div .disappear'),
     divs = showDisappear.children('div'),
-    DISAPPEARHEIGHT = 63;
+    DISAPPEARHEIGHT = 63, hide={};
 
 showDisappear.children('div').wrapInner("<div class='wrapper'></div>");
 
@@ -28,11 +28,26 @@ showDisappear.on('click', function(e) {
         this.className = "show";
         this.style.zIndex = "3";
         $(div).animate({ height: div.defaultHeight }, time, (function() { this.style.zIndex = ""; }).bind(this));
-
+        hide.div = div;
+        hide.saveThis = this;
+        hide.time = time;
+        hide.flag = true;
     } else {
         if (e.target.tagName != 'NAV') return;
 
         fDisappear(div, this, time);
 
     }
+});
+
+$(document).on('click',function(e){
+    if (!(e.target.tagName == 'MAIN' ||
+    e.target.tagName == 'HTML' ||
+    e.target.tagName == 'P' ||
+    e.target.tagName == 'SECTION' ||
+    e.target.className == 'content clearfix' ||
+    e.target.className == 'container')) return;
+        if(!hide.flag) return;
+        hide.flag = false;
+    fDisappear(hide.div, hide.saveThis, hide.time);
 });
