@@ -282,3 +282,17 @@ footer {
     font-size: 48px;
     line-height: 1.39;
 }
+
+/* Элемент для проверки правильности включения анимации для нужного элемента */
+.test{
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    background: blue;
+    border: 1px solid #000;
+    z-index: 5;
+}
+
+.vh{
+    opacity: 0;
+}

@@ -51,3 +51,36 @@ $(document).on('click',function(e){
         hide.flag = false;
     fDisappear(hide.div, hide.saveThis, hide.time);
 });
+
+$('main > nav').click(function () { 
+    destination = $('#footer').offset().top;
+    $('html, body').animate({scrollTop: destination}, 1000); // HTML - необходимо для работы в браузере Safari!
+    return false;
+});
+
+
+
+
+
+var div = document.createElement("div");
+document.body.appendChild(div);
+div.className = "test"
+var x = "200px", y="100px", f
+
+
+window.onscroll = function() {
+    var footer = $('footer')[0],
+        effectElem;
+    x = footer.getBoundingClientRect().left + footer.offsetWidth / 2;
+    y = footer.getBoundingClientRect().top + footer.offsetHeight / 2;
+    effectElem = document.elementFromPoint(x, y);
+    if (!~effectElem.className.indexOf("vh") ) return;    
+    $(effectElem).removeClass("vh");
+    $(effectElem).addClass("animated " + $(effectElem).data().classname);
+    /*div.style.top = y + "px";
+    div.style.left = x + "px";*/
+    // Footer не будем искать, будет легче узнать конец прокрутки, из-за того что у него фиксированая позиция.
+    console.log(document.elementFromPoint(x, y));
+}
+
+/*$(this).addClass($(this).data('animation'));*/
