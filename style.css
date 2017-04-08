@@ -33,6 +33,7 @@
 /* Сайт */
 body{
     background: url("img/bg_footer.jpg") -250px 208px;
+    overflow-x: hidden;
 }
 main{
     position: relative;
@@ -122,9 +123,10 @@ section p::before {
     bottom: 26px;
 }
 
-section p::before {
+body section p::before {
     z-index: 1;
     box-shadow: none;
+    background: #fff;
 }
 
 section p:nth-child(even)::after,
@@ -296,3 +298,36 @@ footer {
 .vh{
     opacity: 0;
 }
+
+/* Временная заплатка конфликта тени в css. Удалить если удастся решить это другим способом.*/
+p span.odd {
+    content: '';
+    left: -1px;
+    position: absolute;
+    width: 19px;
+    height: 64px;
+    /* box-shadow: 0 0 8px #000; */
+    z-index: 2;
+    bottom: 0px;
+    border-radius: 0 0 0 20px;
+    background: green;
+}
+p span.even {
+    content: '';
+    right: 0px;
+    position: absolute;
+    width: 23px;
+    height: 55px;
+    /* box-shadow: 0 0 8px #000; */
+    z-index: 2;
+    bottom: 0px;
+    border-radius: 0 0 20px;
+    background: blue;
+}
+
+/* .animated {
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s;
+    -webkit-animation-fill-mode: none;
+    animation-fill-mode: none;
+} */
