@@ -49,7 +49,7 @@ $(document).on('click',function(e){
 });
 
 
-/* Автоматическая прокрутка */
+/* Автоматическая прокрутка nav */
 $('main > nav').click(function () { 
     destination = $('#footer').offset().top;
     $('html, body').animate({scrollTop: destination}, 1000); // HTML - необходимо для работы в браузере Safari!
@@ -75,31 +75,34 @@ function scrollEffects() {
     effectElem = document.elementFromPoint(x, y);
     if (!~effectElem.className.indexOf("vh") ) return;    
     $(effectElem).removeClass("vh");
-    $(effectElem).addClass("animated " + $(effectElem).data().classname);
+    $(effectElem).animateCss($(effectElem).data().classname, true);
+    // $(effectElem).addClass("animated " + $(effectElem).data().classname);
     // div.style.top = y + "px";
     // div.style.left = x + "px";
     // Footer не будем искать, будет легче узнать конец прокрутки, из-за того что у него фиксированная позиция.
-    new ScrollSwitch().off();
+     
     console.log(document.elementFromPoint(x, y));
     // Использовать событие анимация, нужно включать во время её overflo: hiden;
+    parseFloat($(effectElem).css('animation-duration'));
 }
+
+var scrollSwitch = new ScrollSwitch(); // Нельзя сокращать до new ScrollSwitch().off()/new ScrollSwitch().on(); иначе будет создаваться новый объект в котором будет создаваться новая функция preventDefault из чего removeEventListener не удалит preventDefault старую функцию из события только для FF, а хром будет работать нормально потому что для его события addEventListener не используются.
+$.fn.extend({
+    animateCss: function (animationName, onOff, time) {
+        onOff && scrollSwitch.off();
+        time = time || 500;
+        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+
+        this.addClass('animated ' + animationName).one(animationEnd, function() {
+            $(this).removeClass('animated ' + animationName);
+            onOff && setTimeout(function(){scrollSwitch.on()},time);
+        });
+    }
+});
+
 
 // http://getinstance.info/articles/javascript/css3-animation-javascript-event-handlers/
-var pfx = ["webkit", "moz", "MS", "o", ""];
-function PrefixedEvent(element, type, callback) {
-    for (var p = 0; p < pfx.length; p++) {
-        if (!pfx[p]) type = type.toLowerCase();
-        element.addEventListener(pfx[p] + type, callback, false);
-    }
-}
 
-$('.vh').each(function(index, pTransitionend){
-    PrefixedEvent(pTransitionend, "AnimationEnd", function(){
-        new ScrollSwitch().on();
-       setTimeout(function(){        
-       },500)
-  });
-})
 
 /*$(this).addClass($(this).data('animation'));*/
 
@@ -136,7 +139,7 @@ $(document).ready(function(){
     setTimeout(function(){
     window.scrollTo(0,0);
     window.onscroll = scrollEffects; // Запуск происходит специально отдельно, для того, чтобы элементы случайно не раскрывались при автоматическом скролле случайно раскрытых элементов.
-    },50);
+    },100);
 });
 
 
