@@ -70,12 +70,13 @@ var scrollSwitch = new ScrollSwitch(); // Нельзя сокращать до n
 
 function test(){
     $('.vh').each(function(index, elem){
-        if(index > 4) return;
+        if(index > 5) return;
         $(elem).removeClass("vh");
     })
 }
-test();
+//test();
 
+var prependScrollHeight = 0;
 function scrollEffects(e) {
     var effectElem, DOTANIMATION = 100,
         scrollTopAnimation;
@@ -85,15 +86,21 @@ function scrollEffects(e) {
     effectElem = document.elementFromPoint(x, y);
     div.style.top = y + 10 + "px";
     div.style.left = x + 10 + "px";
+    console.log(effectElem)
     if (!(~effectElem.className.indexOf("vh") || $('.vh').length==1)) return;
     effectElem = $('.vh')[0]; // "Не все так быстро ;-)"
     //$('html, body').animate({scrollTop: $(effectElem).offset().top}, 1000);
     //console.dir(e);
-    //console.log(flagAnimation)
     if (flagAnimation || !effectElem) return;
+    if(!$(effectElem).data().classname){
+        $(effectElem).removeClass("vh");
+        return;
+    }
     scrollTopAnimation = $(effectElem).offset().top - $(window).innerHeight() + $(effectElem).innerHeight() + DOTANIMATION;
+    if (prependScrollHeight>$(window).scrollTop()) return;
     //console.log(scrollTopAnimation + "==" + $(window).scrollTop());
     flagAnimation = true;
+    prependScrollHeight = scrollTopAnimation;
     scrollSwitch.off();
     $('html, body').animate({ scrollTop: scrollTopAnimation }, 300);
     setTimeout(function() {
@@ -146,7 +153,7 @@ $.fn.extend({
 });﻿*/
 
 /* Временная заплатка конфликта тени в css. Удалить если удастся решить это другим способом.*/
-$(".vh").each(function(index, elem) {
+$("p.vh").each(function(index, elem) {
     if (index < 5) {
         if (index % 2) {
             $(elem).append("<span class='odd'></span>");
@@ -164,7 +171,7 @@ $(".vh").each(function(index, elem) {
 });
 $(document).ready(function() {
     setTimeout(function() {
-        window.scrollTo(0, 1264);
+        //window.scrollTo(0, 1264);
 
         setTimeout(function() {
         window.onscroll = scrollEffects; // Запуск происходит специально отдельно, для того, чтобы элементы случайно не раскрывались при автоматическом скролле случайно раскрытых элементов.
