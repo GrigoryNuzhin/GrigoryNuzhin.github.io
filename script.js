@@ -64,38 +64,65 @@ $('main > nav').click(function () {
 var div = document.createElement("div");
 document.body.appendChild(div);
 div.className = "test"
-var x = "200px", y="100px", f
-
-
-function scrollEffects() {
-    var footer = $('footer')[0],
-        effectElem;
-    x = footer.getBoundingClientRect().left + footer.offsetWidth / 2;
-    y = footer.getBoundingClientRect().top + footer.offsetHeight / 2;
-    effectElem = document.elementFromPoint(x, y);
-    if (!~effectElem.className.indexOf("vh") ) return;    
-    $(effectElem).removeClass("vh");
-    $(effectElem).animateCss($(effectElem).data().classname, true);
-    // $(effectElem).addClass("animated " + $(effectElem).data().classname);
-    // div.style.top = y + "px";
-    // div.style.left = x + "px";
-    // Footer не будем искать, будет легче узнать конец прокрутки, из-за того что у него фиксированная позиция.
-     
-    console.log(document.elementFromPoint(x, y));
-    // Использовать событие анимация, нужно включать во время её overflo: hiden;
-    parseFloat($(effectElem).css('animation-duration'));
-}
+var x = "200px", y="100px", flagAnimation = false;
 
 var scrollSwitch = new ScrollSwitch(); // Нельзя сокращать до new ScrollSwitch().off()/new ScrollSwitch().on(); иначе будет создаваться новый объект в котором будет создаваться новая функция preventDefault из чего removeEventListener не удалит preventDefault старую функцию из события только для FF, а хром будет работать нормально потому что для его события addEventListener не используются.
+
+function test(){
+    $('.vh').each(function(index, elem){
+        if(index > 4) return;
+        $(elem).removeClass("vh");
+    })
+}
+test();
+
+function scrollEffects(e) {
+    var effectElem, DOTANIMATION = 100,
+        scrollTopAnimation;
+    x = $(window).innerWidth() / 2;
+    y = $(window).innerHeight() - DOTANIMATION;
+    // console.log("x =" + x + " y =" +  y);
+    effectElem = document.elementFromPoint(x, y);
+    div.style.top = y + 10 + "px";
+    div.style.left = x + 10 + "px";
+    if (!(~effectElem.className.indexOf("vh") || $('.vh').length==1)) return;
+    effectElem = $('.vh')[0]; // "Не все так быстро ;-)"
+    //$('html, body').animate({scrollTop: $(effectElem).offset().top}, 1000);
+    //console.dir(e);
+    //console.log(flagAnimation)
+    if (flagAnimation || !effectElem) return;
+    scrollTopAnimation = $(effectElem).offset().top - $(window).innerHeight() + $(effectElem).innerHeight() + DOTANIMATION;
+    //console.log(scrollTopAnimation + "==" + $(window).scrollTop());
+    flagAnimation = true;
+    scrollSwitch.off();
+    $('html, body').animate({ scrollTop: scrollTopAnimation }, 300);
+    setTimeout(function() {
+            $(effectElem).removeClass("vh");
+            $(effectElem).animateCss($(effectElem).data().classname, true);
+        }, 1000) // превый любая прокрутка, проматать оставить необходимый размер элемента с низу, показать элемент с анимацие, во время этого его прокрутить будет нельзя.
+
+    
+
+    // console.log(document.elementFromPoint(x, y));
+
+   
+}
+
+
+
 $.fn.extend({
     animateCss: function (animationName, onOff, time) {
         onOff && scrollSwitch.off();
-        time = time || 500;
+        flagAnimation = true;
+        time = time || 500
         var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
 
         this.addClass('animated ' + animationName).one(animationEnd, function() {
             $(this).removeClass('animated ' + animationName);
-            onOff && setTimeout(function(){scrollSwitch.on()},time);
+            onOff && setTimeout(function(){
+                scrollSwitch.on();
+                flagAnimation = false;
+            },time);
         });
     }
 });
@@ -135,12 +162,17 @@ $(".vh").each(function(index, elem) {
     }
 
 });
-$(document).ready(function(){
-    setTimeout(function(){
-    window.scrollTo(0,0);
-    window.onscroll = scrollEffects; // Запуск происходит специально отдельно, для того, чтобы элементы случайно не раскрывались при автоматическом скролле случайно раскрытых элементов.
-    },100);
+$(document).ready(function() {
+    setTimeout(function() {
+        window.scrollTo(0, 1264);
+
+        setTimeout(function() {
+        window.onscroll = scrollEffects; // Запуск происходит специально отдельно, для того, чтобы элементы случайно не раскрывались при автоматическом скролле случайно раскрытых элементов.
+    }, 200);
+
+    }, 100);
 });
+
 
 
 
