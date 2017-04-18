@@ -74,7 +74,7 @@ function test(){
         $(elem).removeClass("vh");
     })
 }
-//test();
+test();
 
 var prependScrollHeight = 0;
 function scrollEffects(e) {
@@ -84,13 +84,25 @@ function scrollEffects(e) {
     y = $(window).innerHeight() - DOTANIMATION;
     // console.log("x =" + x + " y =" +  y);
     effectElem = document.elementFromPoint(x, y);
-    div.style.top = y + 10 + "px";
-    div.style.left = x + 10 + "px";
-    console.log(effectElem)
+    // div.style.top = y + 10 + "px";
+    // div.style.left = x + 10 + "px";
+    console.log($(window).scrollTop())
     if (!(~effectElem.className.indexOf("vh") || $('.vh').length==1)) return;
+
+    
+    if(~effectElem.className.indexOf("without-temporal-blocking")){
+        console.log(~effectElem.className.indexOf("without-temporal-blocking"))
+        $(".vh").each(function(index, elem){
+            $(elem).removeClass("vh");
+            $(elem).animateCss($(effectElem).data().classname, false);            
+        });
+        return;
+    }
+    
+
     effectElem = $('.vh')[0]; // "Не все так быстро ;-)"
-    //$('html, body').animate({scrollTop: $(effectElem).offset().top}, 1000);
-    //console.dir(e);
+    
+
     if (flagAnimation || !effectElem) return;
     if(!$(effectElem).data().classname){
         $(effectElem).removeClass("vh");
@@ -106,13 +118,7 @@ function scrollEffects(e) {
     setTimeout(function() {
             $(effectElem).removeClass("vh");
             $(effectElem).animateCss($(effectElem).data().classname, true);
-        }, 1000) // превый любая прокрутка, проматать оставить необходимый размер элемента с низу, показать элемент с анимацие, во время этого его прокрутить будет нельзя.
-
-    
-
-    // console.log(document.elementFromPoint(x, y));
-
-   
+        }, 1000);   
 }
 
 
