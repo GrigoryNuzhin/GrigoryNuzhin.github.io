@@ -74,12 +74,12 @@ function test(){
         $(elem).removeClass("vh");
     })
 }
-//test();
+test();
 
 var prependScrollHeight = 0;
 function scrollEffects(e) {
     var effectElem, DOTANIMATION = 100,
-        scrollTopAnimation, withoutTemporalBlocking = $('.without-temporal-blocking')[1],
+        scrollTopAnimation, withoutTemporalBlocking = $('.scroll-to-end')[1],
         withoutTemporalBlockingHeight = $(withoutTemporalBlocking).offset().top-$(window).innerHeight()+$(withoutTemporalBlocking).innerHeight();
     x = $(window).innerWidth() / 2;
     y = $(window).innerHeight() - DOTANIMATION;
@@ -90,7 +90,7 @@ function scrollEffects(e) {
     //console.log($(window).scrollTop())
 
     /* В одной болокировки прокрутки сразу 2 элемента */
-    if(~effectElem.className.indexOf("without-temporal-blocking") &&
+    if(~effectElem.className.indexOf("scroll-to-end") &&
         ~effectElem.className.indexOf("vh")
          || $(window).scrollTop()>withoutTemporalBlockingHeight && ~effectElem.className.indexOf("vh")){
        if(flagAnimation) return;

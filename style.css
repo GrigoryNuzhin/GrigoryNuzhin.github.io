@@ -325,10 +325,10 @@ p span.even {
     background: blue;
 }
 
-p.without-temporal-blocking {    
+p.scroll-to-end {    
     animation-duration: 1s;
     animation-delay: .1s;
 }
-p.without-temporal-blocking:nth-child(2) {   
+p.scroll-to-end:nth-child(2) {   
     animation-delay:  .9s;
 }
