@@ -74,35 +74,47 @@ function test(){
         $(elem).removeClass("vh");
     })
 }
-test();
+//test();
 
 var prependScrollHeight = 0;
 function scrollEffects(e) {
     var effectElem, DOTANIMATION = 100,
-        scrollTopAnimation;
+        scrollTopAnimation, withoutTemporalBlocking = $('.without-temporal-blocking')[1],
+        withoutTemporalBlockingHeight = $(withoutTemporalBlocking).offset().top-$(window).innerHeight()+$(withoutTemporalBlocking).innerHeight();
     x = $(window).innerWidth() / 2;
     y = $(window).innerHeight() - DOTANIMATION;
     // console.log("x =" + x + " y =" +  y);
     effectElem = document.elementFromPoint(x, y);
     // div.style.top = y + 10 + "px";
     // div.style.left = x + 10 + "px";
-    console.log($(window).scrollTop())
-    if (!(~effectElem.className.indexOf("vh") || $('.vh').length==1)) return;
+    //console.log($(window).scrollTop())
 
-    
-    if(~effectElem.className.indexOf("without-temporal-blocking")){
-        console.log(~effectElem.className.indexOf("without-temporal-blocking"))
+    /* В одной болокировки прокрутки сразу 2 элемента */
+    if(~effectElem.className.indexOf("without-temporal-blocking") &&
+        ~effectElem.className.indexOf("vh")
+         || $(window).scrollTop()>withoutTemporalBlockingHeight && ~effectElem.className.indexOf("vh")){
+       if(flagAnimation) return;
+        flagAnimation = true;   
+        $('html, body').animate({ scrollTop: withoutTemporalBlockingHeight+30 }, 300);
+        scrollSwitch.off();
+        setTimeout(function(){            
         $(".vh").each(function(index, elem){
             $(elem).removeClass("vh");
-            $(elem).animateCss($(effectElem).data().classname, false);            
+            $(elem).animateCss($(elem).data().classname, index==0, 100);
+                     
         });
+         
+        },1000);
+
         return;
     }
-    
+    /* Конец этого блока */
+    if (!(~effectElem.className.indexOf("vh") || $('.vh').length==1)) return;
+
 
     effectElem = $('.vh')[0]; // "Не все так быстро ;-)"
-    
 
+    
     if (flagAnimation || !effectElem) return;
     if(!$(effectElem).data().classname){
         $(effectElem).removeClass("vh");
@@ -111,22 +123,24 @@ function scrollEffects(e) {
     scrollTopAnimation = $(effectElem).offset().top - $(window).innerHeight() + $(effectElem).innerHeight() + DOTANIMATION;
     if (prependScrollHeight>$(window).scrollTop()) return;
     //console.log(scrollTopAnimation + "==" + $(window).scrollTop());
+    
     flagAnimation = true;
-    prependScrollHeight = scrollTopAnimation;
+    prependScrollHeight = scrollTopAnimation; 
+    
     scrollSwitch.off();
     $('html, body').animate({ scrollTop: scrollTopAnimation }, 300);
     setTimeout(function() {
             $(effectElem).removeClass("vh");
             $(effectElem).animateCss($(effectElem).data().classname, true);
-        }, 1000);   
-}
+        }, 1000);
+
+} // scrollEffects() end
 
 
 
 $.fn.extend({
     animateCss: function (animationName, onOff, time) {
-        onOff && scrollSwitch.off();
-        flagAnimation = true;
+        onOff && scrollSwitch.off();        
         time = time || 500
         var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
 
@@ -135,6 +149,7 @@ $.fn.extend({
             onOff && setTimeout(function(){
                 scrollSwitch.on();
                 flagAnimation = false;
+                //console.log("animationend " + flagAnimation);
             },time);
         });
     }
