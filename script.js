@@ -74,7 +74,7 @@ function test(){
         $(elem).removeClass("vh");
     })
 }
-test();
+//test();
 
 var prependScrollHeight = 0;
 function scrollEffects(e) {
@@ -100,7 +100,7 @@ function scrollEffects(e) {
         setTimeout(function(){            
         $(".vh").each(function(index, elem){
             $(elem).removeClass("vh");
-            $(elem).animateCss($(elem).data().classname, index==0, 100);
+            $(elem).animateCss($(elem).data().effectname, index==0, 100);
                      
         });
          
@@ -116,7 +116,7 @@ function scrollEffects(e) {
 
     
     if (flagAnimation || !effectElem) return;
-    if(!$(effectElem).data().classname){
+    if(!$(effectElem).data().effectname){
         $(effectElem).removeClass("vh");
         return;
     }
@@ -131,7 +131,7 @@ function scrollEffects(e) {
     $('html, body').animate({ scrollTop: scrollTopAnimation }, 300);
     setTimeout(function() {
             $(effectElem).removeClass("vh");
-            $(effectElem).animateCss($(effectElem).data().classname, true);
+            $(effectElem).animateCss($(effectElem).data().effectname, true);
         }, 1000);
 
 } // scrollEffects() end
@@ -168,7 +168,7 @@ $.fn.extend({
         var topOfWindow = $(window).scrollTop();
         if (imagePos < topOfWindow+$(window).height()-250) {
             $(this).removeClass("vh");
-            $(this).addClass("animated " + $(this).data().classname);
+            $(this).addClass("animated " + $(this).data().effectname);
         }
     });
 });﻿*/
