@@ -147,7 +147,7 @@ section p.few-text {
 }
 
 /* закрытие чата */
-.content > div {
+.content > div > div {
     position: relative;
     margin: 20px;
     height: 300px;
