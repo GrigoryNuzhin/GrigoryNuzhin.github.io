@@ -1,7 +1,8 @@
+// НЕ работает адаптацию под экран
 /* Функционал язычка */
 var showDisappear = $('.content > div .disappear'),
     divs = showDisappear.children('div'),
-    DISAPPEARHEIGHT = 63, hide={};
+    DISAPPEARHEIGHT = 63, hide={}, flagAnimation = false, prependScrollHeight = 0;
 
 showDisappear.children('div').wrapInner("<div class='wrapper'></div>");
 
@@ -47,28 +48,82 @@ $(document).on('click',function(e){
         hide.flag = false;
     fDisappear(hide.div, hide.saveThis, hide.time);
 });
+/* Конец блока, функционал язычка */
 
+
+
+
+
+
+/* Навигация */
+function pageRead(){
+$('.vh').removeClass('vh');    
+    $(".col-md-5").removeClass('anop');
+    effectMagic.remove();
+}
 
 /* Автоматическая прокрутка nav */
 $('main > nav').click(function () { 
     destination = $('#footer').offset().top;
     $('html, body').animate({scrollTop: destination}, 1000); // HTML - необходимо для работы в браузере Safari!
-    $('.vh').removeClass('vh');
-    return false;
+    pageRead();
 });
+/* Конец этого блока */
+
+/* Клавиатура */
+window.onkeydown = function(e){ // Пришлось использовать встроенное события так как в jQuery есть заглушка для клавиш PageUp, PageDown и End.
+    console.log('Вы ввели символ с клавиатуры. Его код равен ' + e.keyCode);
+    if(e.keyCode == 33|| e.keyCode == 34 || e.keyCode == 35){ // PageUp - 33, PageDown - 34 и End - 35.
+        pageRead(); // Если поставить на PageDown и End, стандартное поведение как при прокрутке, то придется их то придется их временно блокировать тоже, а самое главное так как разрез получается большой то страница будет далеко прыгать так что для них лучше сделать отдельное поведения для элементов в будущей версии этого сайта.
+    }
+}
+/* Конец этого блока */
+
+/* Конец блока навигации */
+
+/* Инструменты для magic эффекта собственного написания */
+
+$("body").append("<div class='effectMagic1'></div>");
+$("body").append("<div class='effectMagic1'></div>");
+$("body").append("<div class='effectMagic1'></div>");
+$("body").append("<div class='effectMagic1'></div>");
+var effectMagic = $(".effectMagic1");
 
 
 
+function randomPosition(div, parentElementDiv) {
+    div.style.left = Math.round(Math.random() * (parentElementDiv.width() - $(div).width())) + "px";
+    div.style.top = Math.round(Math.random() * (parentElementDiv.height() - $(div).height())) + "px";
+}
+
+function createElementsDivs(quantity) {
+    for (var i = 0; i < quantity; i++) {
+        var div = document.createElement("div");
+        div.className = "cube";
+        randomPosition(div, effectMagic);
+        effectMagic.append(div);
+    }
+}
+createElementsDivs(25);
+
+function animationMagicCube() {
+    effectMagic.children().each(function(index, div) {
+        randomPosition(div, effectMagic);
+    })
+}
+/* Конец этого блока инструменты для magic эффекта */
 
 /* Показ анимаций при прокрутке */
+/* Блок отладки отслеживания координат элемента */
 var div = document.createElement("div");
 document.body.appendChild(div);
 div.className = "test"
-var x = "200px", y="100px", flagAnimation = false;
+/* Конец этого блока */
 
 var scrollSwitch = new ScrollSwitch(); // Нельзя сокращать до new ScrollSwitch().off()/new ScrollSwitch().on(); иначе будет создаваться новый объект в котором будет создаваться новая функция preventDefault из чего removeEventListener не удалит preventDefault старую функцию из события только для FF, а хром будет работать нормально потому что для его события addEventListener не используются.
 
 function test(){
+    // Функция для отладки показа элементов
     $('.vh').each(function(index, elem){
         if(index > 5) return;
         $(elem).removeClass("vh");
@@ -76,12 +131,13 @@ function test(){
 }
 //test();
 
-var prependScrollHeight = 0;
+
+
 function scrollEffects(e) {
     var effectElem, DOTANIMATION = 100,
         scrollTopAnimation, withoutTemporalBlocking = $('.scroll-to-end')[1],
-        withoutTemporalBlockingHeight = $(withoutTemporalBlocking).offset().top-$(window).innerHeight()+$(withoutTemporalBlocking).innerHeight();
-    x = $(window).innerWidth() / 2;
+        withoutTemporalBlockingHeight = $(withoutTemporalBlocking).offset().top-$(window).innerHeight()+$(withoutTemporalBlocking).innerHeight(),
+    x = $(window).innerWidth() / 2,
     y = $(window).innerHeight() - DOTANIMATION;
     // console.log("x =" + x + " y =" +  y);
     effectElem = document.elementFromPoint(x, y);
@@ -89,7 +145,73 @@ function scrollEffects(e) {
     // div.style.left = x + 10 + "px";
     //console.log($(window).scrollTop())
 
-    /* В одной болокировки прокрутки сразу 2 элемента */
+    /* magic эффект собственного написания (3) */
+        if (~effectElem.className.indexOf("vh") && $(effectElem).data().effectname == "magic" && !flagAnimation) {
+            var colMd = $(".col-md-5");
+            flagAnimation = true;
+            $(effectElem).removeClass("vh");
+            scrollTopAnimation = $(effectElem).offset().top - $(window).innerHeight() + $(effectElem).innerHeight();
+            $('html, body').animate({ scrollTop: scrollTopAnimation }, 500);
+            scrollSwitch.off();
+        setTimeout(function(){
+            effectMagic.css({"opacity":"1","display": "block"});
+            var lastMessage = $(".chat p:last-child")[0],
+            objPos = $(lastMessage).offset();
+            objPos.top = objPos.top + lastMessage.offsetHeight/2;
+            objPos.left = objPos.left + lastMessage.offsetWidth/2-effectMagic.height()/2;
+               effectMagic.offset(objPos);
+                animationMagicCube();
+
+                var timeInt=50, delCube = 0;
+                    idInt = setInterval(function(){
+                        animationMagicCube();
+                        timeInt+=100;
+                        createElementsDivs(1)
+                        if(effectMagic.children().length>400){
+                            clearInterval(idInt);
+
+                                                    
+                            idInt = setInterval(function(){
+                                //console.log(effectMagic.children()[delCube])
+                                if(effectMagic[0].children[delCube]===undefined){
+                                    clearInterval(idInt);
+                                    
+                                    
+                                    setTimeout(function(){
+                                    colMd.css("opacity","1");
+                                    // http://stackoverflow.com/questions/7134584/how-do-i-use-transitionend-in-jquery
+                                        colMd.on('transitionend webkitTransitionEnd oTransitionEnd', function(){  
+                                            effectMagic.remove();
+                                            flagAnimation = false;
+                                            scrollSwitch.on();
+                                        });                                        
+                                    },50);
+                                    return;
+                                };
+                            /* Нельзя использовать больше 4 - то что есть уже будет накладно для производительность в FF */
+                            effectMagic[0].children[delCube].style.opacity = 0;
+                            effectMagic[1].children[delCube].style.opacity = 0;
+                            effectMagic[2].children[delCube].style.opacity = 0;
+                            effectMagic[3].children[delCube++].style.opacity = 0;
+                            }, 20);
+                        }
+                    }, timeInt);
+                    /* Перемещение 4 главных блоков к место с портфолио */
+               setTimeout(function(){
+                   colMd.each(function(index, elem){
+                    $(effectMagic[index]).offset($(elem).offset());
+                   });
+               },5000);     
+        },800); /* Дождемся конца прокрутки */
+
+
+           
+            return;
+        }
+
+    /* Конец блока magic эффект */
+
+    /* В одной блокировки прокрутки сразу 2 анимации элемента (2) */
     if(~effectElem.className.indexOf("scroll-to-end") &&
         ~effectElem.className.indexOf("vh")
          || $(window).scrollTop()>withoutTemporalBlockingHeight && ~effectElem.className.indexOf("vh")){
@@ -105,16 +227,13 @@ function scrollEffects(e) {
         });
          
         },1000);
-
         return;
     }
     /* Конец этого блока */
+
+    /* В одной блокировке прокрутки 1 анимация элемента (1) */
     if (!(~effectElem.className.indexOf("vh") || $('.vh').length==1)) return;
-
-
-    effectElem = $('.vh')[0]; // "Не все так быстро ;-)"
-
-    
+    effectElem = $('.vh')[0];    
     if (flagAnimation || !effectElem) return;
     if(!$(effectElem).data().effectname){
         $(effectElem).removeClass("vh");
@@ -122,22 +241,23 @@ function scrollEffects(e) {
     }
     scrollTopAnimation = $(effectElem).offset().top - $(window).innerHeight() + $(effectElem).innerHeight() + DOTANIMATION;
     if (prependScrollHeight>$(window).scrollTop()) return;
-    //console.log(scrollTopAnimation + "==" + $(window).scrollTop());
-    
+    //console.log(scrollTopAnimation + "==" + $(window).scrollTop());    
     flagAnimation = true;
-    prependScrollHeight = scrollTopAnimation; 
-    
+    prependScrollHeight = scrollTopAnimation;     
     scrollSwitch.off();
     $('html, body').animate({ scrollTop: scrollTopAnimation }, 300);
     setTimeout(function() {
             $(effectElem).removeClass("vh");
             $(effectElem).animateCss($(effectElem).data().effectname, true);
         }, 1000);
+    /* Конец этого блока */
 
 } // scrollEffects() end
 
 
 
+/* Немного подредактированное мной авторское расширения для показа анимаций с сайта https://github.com/daneden/animate.css. Используется (2)
+и (1). */
 $.fn.extend({
     animateCss: function (animationName, onOff, time) {
         onOff && scrollSwitch.off();        
@@ -154,59 +274,9 @@ $.fn.extend({
         });
     }
 });
+/* Конец этого блока */
 
-
-// http://getinstance.info/articles/javascript/css3-animation-javascript-event-handlers/
-
-
-/*$(this).addClass($(this).data('animation'));*/
-
-
-/*$(window).scroll(function (){
-    $('.vh').each(function (){
-        var imagePos = $(this).offset().top;
-        var topOfWindow = $(window).scrollTop();
-        if (imagePos < topOfWindow+$(window).height()-250) {
-            $(this).removeClass("vh");
-            $(this).addClass("animated " + $(this).data().effectname);
-        }
-    });
-});﻿*/
-
-/* Временная заплатка конфликта тени в css. Удалить если удастся решить это другим способом.*/
-$("p.vh").each(function(index, elem) {
-    if (index < 5) {
-        if (index % 2) {
-            $(elem).append("<span class='odd'></span>");
-        } else {
-            $(elem).append("<span class='even'></span>");
-        }
-    } else {
-        if (index % 2) {
-            $(elem).append("<span class='even'></span>");
-        } else {
-            $(elem).append("<span class='odd'></span>");
-        }
-    }
-
-});
-$(document).ready(function() {
-    setTimeout(function() {
-        //window.scrollTo(0, 1264);
-
-        setTimeout(function() {
-        window.onscroll = scrollEffects; // Запуск происходит специально отдельно, для того, чтобы элементы случайно не раскрывались при автоматическом скролле случайно раскрытых элементов.
-    }, 200);
-
-    }, 100);
-});
-
-
-
-
-
-function ScrollSwitch(){
-    // http://stackoverflow.com/questions/4770025/how-to-disable-scrolling-temporarily/4770179#4770179
+function ScrollSwitch(){ // Блокировка прокрутки. С сайта http://stackoverflow.com/questions/4770025/how-to-disable-scrolling-temporarily/4770179#4770179. Используется (2) и (1).
     var keys = {37: 1, 38: 1, 39: 1, 40: 1};
 
     function preventDefault(e) {
@@ -245,4 +315,50 @@ function ScrollSwitch(){
         off: disableScroll,
         on: enableScroll
     }
-}
+} // ScrollSwitch() end
+
+/* Конец блока, показ анимаций при прокрутке */
+
+
+/*$(window).scroll(function (){
+    $('.vh').each(function (){
+        var imagePos = $(this).offset().top;
+        var topOfWindow = $(window).scrollTop();
+        if (imagePos < topOfWindow+$(window).height()-250) {
+            $(this).removeClass("vh");
+            $(this).addClass("animated " + $(this).data().effectname);
+        }
+    });
+});﻿*/
+
+/* Временная заплатка конфликта тени в css. Удалить если удастся решить это другим способом.*/
+$("p.vh").each(function(index, elem) {
+    if (index < 5) {
+        if (index % 2) {
+            $(elem).append("<span class='odd'></span>");
+        } else {
+            $(elem).append("<span class='even'></span>");
+        }
+    } else {
+        if (index % 2) {
+            $(elem).append("<span class='even'></span>");
+        } else {
+            $(elem).append("<span class='odd'></span>");
+        }
+    }
+
+});
+/* Конец этого блока */
+
+/* При обновлении страницы перемотать в начало */
+$(document).ready(function() {
+    setTimeout(function() {
+        //window.scrollTo(0, 1264);
+
+        setTimeout(function() {
+        window.onscroll = scrollEffects; // Запуск происходит специально отдельно, для того, чтобы элементы случайно не раскрывались при автоматическом скролле случайно раскрытых элементов.
+    }, 200);
+
+    }, 100);
+});
+/* Конец этого блока */
