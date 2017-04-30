@@ -104,7 +104,7 @@ function createElementsDivs(quantity) {
         effectMagic.append(div);
     }
 }
-createElementsDivs(25);
+createElementsDivs(13);
 
 function animationMagicCube() {
     effectMagic.children().each(function(index, div) {
@@ -162,17 +162,17 @@ function scrollEffects(e) {
                effectMagic.offset(objPos);
                 animationMagicCube();
 
-                var timeInt=50, delCube = 0;
+                var delCube = 0,
                     idInt = setInterval(function(){
                         animationMagicCube();
-                        timeInt+=100;
+                        
                         createElementsDivs(1)
-                        if(effectMagic.children().length>400){
+                                console.log(effectMagic.children().length)
+                        if(effectMagic.children().length>200){
                             clearInterval(idInt);
 
                                                     
                             idInt = setInterval(function(){
-                                //console.log(effectMagic.children()[delCube])
                                 if(effectMagic[0].children[delCube]===undefined){
                                     clearInterval(idInt);
                                     
@@ -195,7 +195,7 @@ function scrollEffects(e) {
                             effectMagic[3].children[delCube++].style.opacity = 0;
                             }, 20);
                         }
-                    }, timeInt);
+                    }, 150);
                     /* Перемещение 4 главных блоков к место с портфолио */
                setTimeout(function(){
                    colMd.each(function(index, elem){
