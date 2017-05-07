@@ -1,4 +1,4 @@
-// НЕ везде работает треугольник у сообщений в мобильныйх бразерах, так же картинку нужно большего размера либо подогнать под размер экрана обрезов края.
+// НЕ везде работает треугольник у сообщений в мобильных браузерах, так же картинку нужно большего размера либо подогнать под размер экрана обрезов края.
 /* Функционал язычка */
 var showDisappear = $('.content > div .disappear'),
     divs = showDisappear.children('div'),
@@ -375,8 +375,7 @@ function scrollTopF() { // (4)
     $(window).scrollTop(0);
 
     window.onscroll = function() {
-        setTimeout(function() {
-            $(window).scrollTop(0);            
+        setTimeout(function() {          
             /// console.log("window.onscroll");
             window.onscroll = scrollEffects; // Запуск происходит специально отдельно, для того, чтобы элементы случайно не раскрывались при автоматическом скролле случайно раскрытых элементов.
         }, 50);
@@ -387,6 +386,6 @@ function scrollTopF() { // (4)
 
 
 $(document).ready(function() {
-    scrollTopF(); // (4)
+    setTimeout(scrollTopF, 100); // (4)
 });
 /* Конец этого блока */
