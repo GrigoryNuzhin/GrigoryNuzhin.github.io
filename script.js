@@ -120,6 +120,14 @@ function animationMagicCube() {
         }
     }
 }
+
+function effectMagicVanillaJSlength(){
+    var length = 0;
+    for (var i = 0; i < effectMagicVanillaJS.length; i++) {
+        length += effectMagicVanillaJS[i].children.length;
+    }
+    return length;
+}
 /* Конец этого блока инструменты для magic эффекта */
 
 /* Показ анимаций при прокрутке */
@@ -138,7 +146,7 @@ function test() {
         $(elem).removeClass("vh");
     })
 }
-test();
+//test();
 
 
 
@@ -162,6 +170,7 @@ function scrollEffects(e) {
         scrollTopAnimation = $(effectElem).offset().top - $(window).innerHeight() + $(effectElem).innerHeight();
         $('html, body').animate({ scrollTop: scrollTopAnimation }, 500);
         scrollSwitch.off();
+
         setTimeout(function() {
             effectMagic.css({ "opacity": "1", "display": "block" });
             var lastMessage = $(".chat p:last-child")[0],
@@ -173,16 +182,16 @@ function scrollEffects(e) {
 
             var delCube = 0,
                 idInt = setInterval(function() {
-                    animationMagicCube();
 
-                    createElementsDivs(1)
+                    animationMagicCube();
+                    createElementsDivs(1);
                     
-                    if (effectMagic.children().length > 200) {
+                    if (effectMagicVanillaJSlength() > 200) {
                         clearInterval(idInt);
 
-
                         idInt = setInterval(function() {
-                            if (effectMagic[0].children[delCube] === undefined) {
+                            // console.log('test')
+                            if (effectMagicVanillaJS[0].children[delCube] === undefined) {
                                 clearInterval(idInt);
 
 
@@ -198,10 +207,10 @@ function scrollEffects(e) {
                                 return;
                             };
                             /* Нельзя использовать больше 4 - то что есть уже будет накладно для производительность в FF */
-                            effectMagic[0].children[delCube].style.opacity = 0;
-                            effectMagic[1].children[delCube].style.opacity = 0;
-                            effectMagic[2].children[delCube].style.opacity = 0;
-                            effectMagic[3].children[delCube++].style.opacity = 0;
+                            effectMagicVanillaJS[0].children[delCube].style.opacity = 0;
+                            effectMagicVanillaJS[1].children[delCube].style.opacity = 0;
+                            effectMagicVanillaJS[2].children[delCube].style.opacity = 0;
+                            effectMagicVanillaJS[3].children[delCube++].style.opacity = 0;
                         }, 20);
                     }
                 }, 150);
