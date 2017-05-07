@@ -1,4 +1,4 @@
-// НЕ работает адаптацию под экран
+// НЕ везде работает треугольник у сообщений в мобильныйх бразерах, так же картинку нужно большего размера либо подогнать под размер экрана обрезов края.
 /* Функционал язычка */
 var showDisappear = $('.content > div .disappear'),
     divs = showDisappear.children('div'),
@@ -95,9 +95,9 @@ var effectMagic = $(".effectMagic1"),
 
 
 function randomPosition(div) {
-    console.log(div.offsetWidth)
-    div.style.left = Math.round(Math.random() * (div.parentElement.offsetWidth - parseInt(div.style.widht))) + "px";
-    div.style.top = Math.round(Math.random() * (div.parentElement.offsetHeight - parseInt(div.style.height))) + "px";
+    // console.log(getComputedStyle(div).width);
+    div.style.left = Math.round(Math.random() * (parseInt(getComputedStyle(div.parentElement).width) - parseInt(getComputedStyle(div).width))) + "px";
+    div.style.top = Math.round(Math.random() * (parseInt(getComputedStyle(div.parentElement).height) - parseInt(getComputedStyle(div).height))) + "px";
 }
 
 function createElementsDivs(quantity) {
@@ -113,9 +113,12 @@ function createElementsDivs(quantity) {
 createElementsDivs(13);
 
 function animationMagicCube() {
-    effectMagicVanillaJS.children().each(function(index, div) {
-        randomPosition(div, effectMagicVanillaJS);
-    })
+    for (var i = 0; i < effectMagicVanillaJS.length; i++) {        
+            // console.log(effectMagicVanillaJS[i]);
+        for (var j = 0; j < effectMagicVanillaJS[i].children.length; j++) {
+            randomPosition(effectMagicVanillaJS[i].children[j]);
+        }
+    }
 }
 /* Конец этого блока инструменты для magic эффекта */
 
@@ -135,7 +138,7 @@ function test() {
         $(elem).removeClass("vh");
     })
 }
-//test();
+test();
 
 
 
@@ -173,7 +176,7 @@ function scrollEffects(e) {
                     animationMagicCube();
 
                     createElementsDivs(1)
-                    console.log(effectMagic.children().length)
+                    
                     if (effectMagic.children().length > 200) {
                         clearInterval(idInt);
 
