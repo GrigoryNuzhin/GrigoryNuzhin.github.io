@@ -1,0 +1,188 @@
+body {background: #c0c0c0;}
+
+.main {
+ 	max-width: 1115px;
+ 	min-width: 965px;
+ 	min-height: 1047px;
+ 	margin: auto;
+ 	background: url(test2_right_medalion.png) no-repeat, url(test2_bg_left.png) no-repeat top right, #ce0266 url(test2_fon_bg.jpg) no-repeat;
+ 	background-size: auto, auto,100% 1047px;
+ 	font-family: Tahoma, Arial, sans-serif;
+ 	overflow: hidden;
+ 	border-left: 1px solid;
+ 	border-right: 1px solid;
+}
+
+ img {
+ 	display: block;
+ 	float: left;
+}
+
+/************* left *************/
+
+.left {
+	float: left;
+ 	width: 33%; 		
+}
+
+.block-left {
+margin-left: 69px;
+}
+
+.block-left img {
+	display: block;
+	margin-bottom: 8px;
+}
+.photo_wecherinka-text {
+  width: 158px;
+  margin-left: 16px;
+}
+
+
+.photo_wecherinka-text h1 {
+	font-size: 18px;
+	margin: 0 auto 0 auto;
+}
+
+.photo_wecherinka-text p {
+	font-size: 11px;
+	line-height: 2;
+}
+
+.smotr {
+	font-size: 12px;
+	font-weight: bold;
+	display: block;
+	background: #ffe900;
+	width: 76px;
+	padding: 4px 3px 4px 11px;
+	margin-top: 5px;
+	text-decoration: none;
+}
+
+/************* right *************/
+ul {position: relative;}
+
+li {
+	list-style: none;
+	font-family: Georgia Regular, Times New Roman;
+	font-size: 21px;
+}
+
+.fotogalereja{
+	margin: 88px 0 0 50%;
+}
+
+.afischa{
+	margin: 91px 0 0 11%;
+}
+
+.wibor {
+	color: #ffae00;
+	padding: 23px 10px 16px 8px;
+	background: #000;
+	margin-left: -8px;
+}
+
+.sobitija{
+	margin: -26px 0 0 41%;
+}
+
+.menu{
+	margin: 66px 0 123px 9%;
+}
+
+.forum{
+	position: absolute;
+	margin: -59px 0 0 74%;
+}
+
+.kontakti{
+	margin: 21px 0 0 78%;
+	position: absolute;
+	display: block;
+}
+
+a{color: #000;}
+
+.right li a:hover {
+	transition: color .3s ease-in-out, background .3s ease-in-out;
+	color: #ffae00;
+	padding: 23px 10px 16px 8px;
+	background: #000;
+	margin-left: -8px;
+}
+
+.right {
+	float: left;
+ 	width: 66%;
+}
+
+.test2_img_center{
+	margin: -183px 0px 0px -67px;
+	padding: 131px 111px 69px 60px;
+	width: 400px;
+	height: 380px;
+	font-family: Georgia Regular, Times New Roman;
+	font-size: 15px;
+	line-height: 16px;
+	color: #c59388;
+	background: url(test2_img_center.png);
+	overflow-y: auto;
+}
+
+.test2_img_center p {
+	margin-bottom: 3px;
+}
+.test2_img_center a {
+	color: #c59388;
+}
+/************* footer *************/
+
+ footer {
+ 	clear: both;
+ 	width: 100%; 	
+ 	margin-top: 5px;
+ }
+
+ .block-leftf , .block-rightf {
+ 	float: left;
+ 	width: 50%;
+ }
+ 
+.test2_nota_truba {	margin: -71px 0 0 -12px;}
+
+.wisitka {
+	float: left;
+	width: 200px;
+	margin: 25px 0px 0px 19px;	
+}
+
+.e-mail,.telefon{
+	color: #e1b3b6;
+	font-size: 11px;
+	line-height: 24px;
+}
+
+h3 {font: 21px OfficinaSerifCTT, Times New Roman;}
+
+.rightf {
+	margin: 28px 0 0 -10px;
+}
+.opis {display: inline;}
+.test2_bg_niz {
+	margin: -4px 0 0 131px;
+	min-height: 100px;
+	width: 192px;
+	line-height: 13px;
+}
+
+.test2_bg_niz h3 {padding-bottom: 4px;}
+
+.test2_bg_niz p {
+	font-size: 11px;
+	color: #e1b3b6;
+	margin-left: 2px;
+}
+
+.rightf img {margin-top: 4px;}

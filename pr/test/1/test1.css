@@ -1,0 +1,86 @@
+section, footer, nav {
+ display: block; 
+}
+
+/* footer к низу */
+html, body {
+height: 100%;
+}
+/* footer к низу close */
+  
+.main {
+  margin: 0 auto;
+  width: 1000px;
+  background: #141b23 url(test1_bg_fon.jpg) no-repeat top right;
+  font-family: Franklin Gothic Medium, Arial;
+  color: #fff;
+  /* footer к низу */
+  min-height: 100%;
+  position: relative;
+}
+
+/************************ menu ************************/
+
+nav ul { 
+  padding: 63px 0px 0px 54px;
+}
+
+nav li {
+  display: inline;
+  margin-right: 14px;
+  list-style: none; 
+  font-size: 16px;
+  letter-spacing: -1px
+}
+
+nav li:first-child {
+  margin-right: 24px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #9da6b5;
+}
+nav a:hover {
+  text-decoration: underline;
+  color: #fff;
+}
+
+/************************ section ************************/
+
+section {
+  margin: 70px 0px 0px 94px;
+  width: 458px;
+  min-height: 283px;
+  padding-bottom: 276px;
+}
+
+section h1 {
+  font-weight: normal;
+  font-size: 25px;
+  margin-bottom: 3px;
+}
+
+ section p {
+  margin-left: 2px;
+  font-size: 13px;
+  line-height: 16px;
+ }
+
+ section a {
+  color: #fff;
+  font-size: 13px;
+}
+section a:active {color: #fff;} 
+section a:hover {text-decoration: none;}
+/************************ footer ************************/
+
+footer { 
+  padding: 0 0 90px 54px;
+  font-size: 12px;
+  color: #54595f;  
+  /* footer к низу */
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}  

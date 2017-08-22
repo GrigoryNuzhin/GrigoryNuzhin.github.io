@@ -1,0 +1,362 @@
+.coin-slider { overflow: hidden; zoom: 1; position: relative; /**/display: inline-block;}
+.coin-slider a{ text-decoration: none; outline: none; border: none;}
+
+.cs-buttons { font-size: 0px; padding: 10px; float: left; }
+
+.cs-buttons a {
+    margin-left: 5px;
+    height: 10px;
+    width: 10px;
+    float: left;
+    border: 1px solid #B8C4CF;
+    color: #B8C4CF;
+    text-indent: -1000px;
+}
+
+.cs-buttons a:first-child{
+    margin-left: -3px;
+}
+
+.cs-active { background-color: #B8C4CF; color: #FFFFFF; }
+
+.cs-title {width: 100%; padding: 10px; background-color: #000000; color: #FFFFFF;}
+
+.cs-prev, 
+.cs-next { background-color: #000000; color: #FFFFFF; padding: 0px 10px; }
+
+.coin-slider #cs-navigation-coin-slider a:focus,
+.coin-slider #cs-navigation-coin-slider a:hover{
+    color: #fff;
+}
+
+
+/* Сайт */
+body{
+    background: url("img/bg_footer.jpg") -250px 208px;
+    overflow-x: hidden;
+}
+main{
+    position: relative;
+    z-index: 5;
+    background: url("img/bg.jpg") top center fixed;
+    margin-bottom: 366px;
+    padding-bottom: 29px;
+}
+
+/* Своя кастомная анимация */
+main > nav {
+    margin: 35px auto/* 50px auto */;
+    width: 66px;
+    font-size: 100px;
+    cursor: pointer;
+    line-height: 69px;
+    /* text-shadow: 1px 1px 2px black */;
+    animation: checkMark 1.5s linear 0s infinite;
+}
+main > nav:hover{
+    animation-play-state: paused;
+}
+@keyframes checkMark{
+    0% {
+        transform: translate(0, -20px);
+    } 
+    50% {
+        transform: translate(0, 20px);
+    }
+    100% {
+        transform: translate(0, -20px);
+    }
+}
+
+/* Контент */
+.container {
+    width: 750px;
+    margin: 0px auto;
+    padding: 26px;
+    /* background: #f5f5f5; */
+    line-height: 1.5;
+}
+
+/* Чат */
+section p {
+    border-radius: 25px;
+    padding: 20px;
+    position: relative;
+    color: #fff;
+    box-shadow: 0 0 8px #000;
+    width: 93%;
+}
+
+section p a {
+    color: #6bf7e8;
+    text-decoration: underline;
+}
+
+section p a:hover {
+    color: #6bf7e8;
+    text-decoration: none;
+}
+section p a:focus {
+    color: #6bf7e8;
+    text-decoration: none;
+}
+section p:nth-child(even) {
+    border: 1px solid green;
+    background: green;
+    clear: both;
+}
+
+section p:nth-child(odd) {
+    border: 1px solid blue;
+    background: blue;
+    float: right;
+}
+
+section p::after,
+section p::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 25px;
+    box-shadow: 0 0 8px #000;
+    z-index: -1;
+    bottom: 26px;
+}
+
+body section p::before {
+    z-index: 1;
+    box-shadow: none;
+    background: #fff;
+}
+
+section p:nth-child(even)::after,
+section p:nth-child(even)::before {
+    background: green;
+    left: -11px;
+    transform: rotate(-141deg);
+}
+
+section p:nth-child(odd)::after, section p:nth-child(odd)::before {   
+    background: blue;
+    right: -11px;
+    transform: rotate(141deg);
+}
+
+section p.few-text {
+    padding: 30px 20px;
+}
+
+/* закрытие чата */
+.content > div > div {
+    position: relative;
+    margin: 20px;
+    height: 300px;
+    border-radius: 20px;
+    border: 1px solid;
+    padding: 5px;
+    background: url('img/bg_pr.jpg');
+}
+
+.content > div h3 {
+    margin: 4px;
+}
+
+.content > div a img {
+    width: 200px;
+}
+
+.content > div .disappear {
+    cursor: pointer;
+    height: 63px;
+    clip: rect(0, auto, 62px, 0); /* Не стал использовать overflow: hidden;, для того чтобы кончики некоторых букв не высовывались. */    
+}
+
+
+.content > div .disappear::after,.content > div .show::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: inherit;
+    top: 0px;
+    left: 0;
+    height: 62px;
+    border-radius: 0 0 20px 20px;
+    border-bottom: inherit;
+    background: #f5f5f5;
+    background: linear-gradient(to top, #f5f5f5 20%, rgba(245, 245, 245, 0.48));
+}
+.content > div .show, .content > div .disappear {
+    position: absolute;
+    border-top: 1px solid #000;
+    top: 235px;
+    left: 0;
+    width: 100%;
+    padding: 5px 8px 0px 9px;
+    line-height: 1.209;
+    z-index: 1;
+}
+.content > div .show div{min-height: 63px;}
+.content > div .show{
+    z-index: 2;
+}
+.content > div .show > div{
+    overflow: hidden;
+    padding: 8px 15px 8px 18px;
+    background: #fff;
+    /* background: url('img/bg_footer.jpg'); */
+    box-shadow: 0px 5px 6px 0px rgba(0, 0, 0, 0.5);    
+    border-radius: 0 0 20px 20px;
+}
+
+.content > div .show::after {
+    z-index: 3;   
+    height: 100%;
+    background: transparent;
+}
+
+.content > div .show .wrapper::before {
+    content: '';
+    float: right;
+    z-index: 3;   
+    height: 38px;
+    width: 23px;
+    /* background: green; */
+}
+.content > div .show .wrapper::after{ /* fix overflow: hidden; padding */
+    content: '';
+    border-radius: 0 0 20px 20px;
+    position: absolute;
+    z-index: 3;
+    height: 18px;
+    width: 271PX;
+    left: 9px;
+    bottom: 0;
+    background: #fff;
+}
+.content > div .show nav {    
+    transform: rotate(-180deg);    
+}
+
+
+/* .content > div .show > div,
+.content > div .show::after,
+.content > div .show::before,
+.content > div .show nav{
+    transition: height 5s, clip 5s;
+} */
+
+
+
+/* .content > div .disappear > div,
+.content > div .disappear::after,
+.content > div .disappear::before,
+.content > div .disappear nav {
+    
+} */
+
+.content > div nav {
+    cursor: pointer;
+    position: absolute;
+    z-index: 4;
+    top: 13px;
+    right: 11px;
+    font-size: 53px;
+    line-height: 38px;
+    color: #4d4d4d;
+}
+
+
+footer {
+    padding: 10px !important;
+    background: #f5f5f5;
+    z-index: 0;
+    width: 950px;
+    position: fixed;
+    margin: 50px auto 50px;
+    top: auto;
+    bottom: 18px;
+    left: 0;
+    right: 0;
+    /* box-shadow: 0 8px 15px rgba(0,0,0,.6); */
+    box-shadow: inset -20px -20px 15px rgb(254, 253, 101), inset 20px 18px 15px rgb(141, 255, 69);
+    border-radius: 20px;
+    text-align: center;
+    font-size: 48px;
+    line-height: 1.39;
+}
+
+/* Элемент для проверки правильности включения анимации для нужного элемента */
+.test{
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    background: blue;
+    border: 1px solid #000;
+    z-index: 5;
+}
+
+.vh{
+    opacity: 0;
+}
+
+/* Временная заплатка конфликта тени в css. Удалить если удастся решить это другим способом.*/
+p span.odd {
+    content: '';
+    left: -1px;
+    position: absolute;
+    width: 19px;
+    height: 64px;
+    /* box-shadow: 0 0 8px #000; */
+    z-index: 2;
+    bottom: 0px;
+    border-radius: 0 0 0 20px;
+    background: green;
+}
+p span.even {
+    content: '';
+    right: 0px;
+    position: absolute;
+    width: 23px;
+    height: 55px;
+    /* box-shadow: 0 0 8px #000; */
+    z-index: 2;
+    bottom: 0px;
+    border-radius: 0 0 20px;
+    background: blue;
+}
+
+p.scroll-to-end {    
+    animation-duration: 1s;
+    animation-delay: .1s;
+}
+p.scroll-to-end:nth-child(2) {   
+    animation-delay:  .9s;
+}
+
+
+/* Эффект магии */
+
+.effectMagic1 {
+    position: absolute;
+    z-index: 5;
+    width: 291px;
+    height: 300px;
+    opacity: 0;  
+    transition: all 1s linear;
+    display: none;
+}
+
+.anop {
+    opacity: 0;
+    transition: all 2s cubic-bezier(0.4, 0, 1, 1);
+}
+
+
+.cube {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #00fff6;
+    border: 1px solid #00fff3;
+    transition: all 1s linear;
+}
