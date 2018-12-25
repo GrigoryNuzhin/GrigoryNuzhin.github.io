@@ -1,0 +1,105 @@
+main {
+ margin-top:150px;
+}
+div.edit{
+	display: inline-block;
+	min-width: 80%;
+	min-height: 45px;
+	outline: none;
+	color: #fff;
+	font-family: Arial, Helvetica, sans-serif;
+}
+div[contenteditable]{
+	-webkit-user-modify: read-write-plaintext-only;
+}
+div.noneEdit::after{
+	content: "Введите новый текст.";
+	opacity: 0.5;
+	height: 100%;
+	width: 100%;
+}
+div.noneEdit {
+	text-align: left;
+}
+.poster{
+	position: relative;
+	font-weight: bold;
+	display: block;
+	margin: 0 auto;
+	width: 550px;
+	height: 413px;
+	background-size:cover;
+	padding: 0 21px;
+}
+
+.wrap{
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+	width: inherit;
+	height: inherit;
+}
+.poster:hover .arrowLeft,
+.poster:hover .arrowRight{
+	opacity: 1;
+}
+
+
+.arrowLeft,
+.arrowRight{
+	transition: .2s ease-in-out;
+	font-size: 39px;
+	position: absolute;
+	width: 26px;
+	height: 100%;	
+	cursor: pointer;
+	opacity: 0;
+	user-select: none;
+}
+.arrowLeft{
+	top:0;
+	left:0;	
+}
+.arrowRight{	
+	top:0;
+	right:0;
+}
+.arrowLeft:hover{	
+	background: linear-gradient(269deg, transparent 0%, rgba(0,0,0,.086));
+}
+.arrowRight:hover{
+	background: linear-gradient(89deg, transparent 0%, rgba(0,0,0,.086));	
+}
+.arrowLeft div{
+	right:0;
+}
+.arrowLeft div,
+.arrowRight div{
+	position: absolute;
+	top:50%;
+	margin-top: -29px;
+	color: #fff;
+	opacity: 0.5;
+	transition: .2s ease-in-out;
+}
+
+.arrowLeft:hover div,
+.arrowRight:hover div{
+	opacity: 1;
+}
+    
+.imgListHref{
+margin-top: 12px;
+outline: none;
+border: 1px solid #266584;
+background: #fefff6;
+padding: 0px 3px;
+font-weight: initial;
+height: 103px;
+overflow: auto;
+}
+
+button{
+	display: block;
+	margin: 5px auto;
+}
