@@ -27,7 +27,7 @@ div.noneEdit {
 	display: block;
 	margin: 0 auto;
 	width: 550px;
-	height: 413px;
+	height: 426px;
 	background-size:cover;
 	padding: 0 21px;
 }
@@ -40,13 +40,15 @@ div.noneEdit {
 	height: inherit;
 }
 .poster:hover .arrowLeft,
-.poster:hover .arrowRight{
+.poster:hover .arrowRight,
+.poster:hover #btn-download{
 	opacity: 1;
 }
 
 
 .arrowLeft,
-.arrowRight{
+.arrowRight,
+#btn-download{
 	transition: .2s ease-in-out;
 	font-size: 39px;
 	position: absolute;
@@ -74,7 +76,8 @@ div.noneEdit {
 	right:0;
 }
 .arrowLeft div,
-.arrowRight div{
+.arrowRight div,
+#btn-download div{
 	position: absolute;
 	top:50%;
 	margin-top: -29px;
@@ -84,8 +87,16 @@ div.noneEdit {
 }
 
 .arrowLeft:hover div,
-.arrowRight:hover div{
+.arrowRight:hover div,
+#btn-download:hover div{
 	opacity: 1;
+}
+
+#btn-download{
+	top:20px;
+	height: 20px;
+	font-size: 15px;
+	width: 200px;
 }
     
 .imgListHref{
@@ -102,4 +113,8 @@ overflow: auto;
 button{
 	display: block;
 	margin: 5px auto;
+}
+
+canvas {
+	margin-left: -22px;
 }

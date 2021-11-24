@@ -2,7 +2,7 @@
 <html lang="ru">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8"> 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -16,13 +16,15 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 </head>
 
 <body>
     <main class="container">
         <section class="row">
         <div class="col-md-12">
-            <div class="poster">    
+            <div class="poster">
+            <div id="btn-download"><div>Получить картинку</div></div> 
             <div class="arrowLeft"><div>&lt;</div></div>
                 <div class="wrap">
                     <div contenteditable="true" class="edit noneEdit"></div>
@@ -31,13 +33,54 @@
 <div class="imgListHref" contenteditable="true">https://upload.wikimedia.org/wikipedia/commons/0/0c/BGGeminorum.gif
 https://c1.staticflickr.com/3/2656/4105116018_0ceaa25bf5_b.jpg
 https://www.publicdomainpictures.net/pictures/200000/nahled/checkerboard-bg-2.jpg
-https://c1.staticflickr.com/7/6041/6271444544_214c35608e_b.jpg</div>
+https://c1.staticflickr.com/7/6041/6271444544_214c35608e_b.jpg
+https://c.pxhere.com/photos/03/c7/starry_sky_sky_long_exposure_city_thun_lake_thun_fog_switzerland-1284519.jpg!d
+https://c.pxhere.com/photos/a2/d1/photo-1075795.jpg!d
+https://c.pxhere.com/photos/0d/b2/tent_tourism_starry_sky_tents_nature_russia_vacation-1168939.jpg!d
+https://c.pxhere.com/photos/b0/8f/pine_needles_pine_plant_needle_nature_flora_evergreen-1026575.jpg!d
+https://c.pxhere.com/photos/b7/67/background_tree_wood_boards_texture_wooden_background_old_brown-1370489.jpg!d
+https://c.pxhere.com/photos/16/e7/tree_boards_background_rustic_wood_texture_wood_brown_texture-1278788.jpg!d
+https://c.pxhere.com/photos/05/11/tree_old_tree_the_texture_of_the_wood_wood_background_boards_old_boards_fence_old_fence-1072088.jpg!d
+https://c.pxhere.com/images/ee/67/c55288a42a6347c492ca4cf4707f-1437371.jpg!d
+https://c.pxhere.com/photos/5d/27/nature_leaf_detail_drops_macro-764802.jpg!d
+https://c.pxhere.com/photos/2d/ac/almond_almonds_roasted_roast_nut_food_kernel_snack-1354869.jpg!d
+https://c.pxhere.com/photos/6c/25/night_evening_clouds_dusk_mood_abendstimmung_lines_architecture-1371024.jpg!d
+https://c.pxhere.com/photos/4f/40/sky_star_night_reflection_lake-153199.jpg!d
+https://c.pxhere.com/photos/00/9c/waterfall_nature_forest_tropics_jungle-579856.jpg!d
+https://c.pxhere.com/photos/e0/42/las_vegas_city_night_light_lights_sea_of_light_lighting_energy-1157862.jpg!d
+https://c.pxhere.com/photos/aa/6f/earth_planet_solar_system_biosphere_space-643170.jpg!d
+https://c.pxhere.com/photos/29/1c/microphone_micro_recording_sound_sound_recording_audio_device_electronics-970734.jpg!d
+https://c.pxhere.com/photos/bf/bb/plant_fern_leaf_foliage_shadow-78816.jpg!d
+https://c.pxhere.com/photos/5d/ea/light_vine_globe_lamp_lampshade-16578.jpg!d
+https://c.pxhere.com/photos/d8/12/notebook_laptop_pc_pen_notes_code_programming_cafe-865584.jpg!d
+https://c.pxhere.com/photos/fb/c1/main_road_road_texture_gray_background-628190.jpg!d
+https://c.pxhere.com/photos/2e/14/transport_highway_lights_speed_night_motion_transportation_road-762387.jpg!d
+https://c.pxhere.com/photos/e3/3b/coffee_latte_mug_cup_glass-31761.jpg!d
+https://c.pxhere.com/photos/12/fd/texture_wood_grain_weathered_washed_off_wooden_structure_grain_structure_background-1373976.jpg!d
+https://c.pxhere.com/photos/e2/8f/new_year_s_eve_sparkler_sylvester_sparks-641298.jpg!d
+https://c.pxhere.com/photos/16/cf/black_flower_petal_raindrop_dew_drop-1225098.jpg!d
+https://c.pxhere.com/photos/99/08/palm_tree_night_star_astrophotography_person-1409269.jpg!d
+https://c.pxhere.com/photos/46/dd/building_skyscraper_night_window_architecture-60592.jpg!d
+https://c.pxhere.com/photos/3c/0a/grand_palace_wat_phra_kaew_bangkok_thailand_ancient_architecture_asia_background-1271094.jpg!d
+https://c.pxhere.com/photos/fd/12/background_board_brown_christmas_christmas_decor_design_hanging_hardwood-1559191.jpg!d
+https://c.pxhere.com/photos/46/23/anniversary_blast_bright_celebration_christmas_color_dark_eve-1556987.jpg!d
+https://c.pxhere.com/images/d0/81/32ec143d200c5d9e920065f85759-1555503.jpg!d
+https://c.pxhere.com/photos/7f/70/beautiful_bright_celebrate_celebration_color_dark_evening_event-1550749.jpg!d
+https://c.pxhere.com/photos/63/28/moisture_rain_wet_window-1557307.jpg!d
+https://c.pxhere.com/photos/ef/b3/airplane_backlit_clouds_creative_dawn_dusk_evening_flying-1559213.jpg!d
+https://c.pxhere.com/photos/5b/c0/abstract_blue_bright_clean_clear_close_up_glass_macro-1550471.jpg!d
+https://c.pxhere.com/photos/b8/ac/blur_bokeh_circles_colors_lights_pattern_round_round_out-1549391.jpg!d
+https://c.pxhere.com/photos/d7/f2/abstract_background_balls_beads_bonbon_bright_bubble_bubbles-1547129.jpg!d
+https://c.pxhere.com/photos/ad/2b/beach_clouds_dawn_dusk_evening_landscape_long_exposure_ocean-1545785.jpg!d
+https://c.pxhere.com/photos/e6/90/blue_water_countryside_daylight_grass_green_hills_lake_landscape-1540153.jpg!d
+https://c.pxhere.com/images/93/30/521a0c6f7e4bf2b8c9f1ab86fc2d-1436609.jpg!d
+https://c.pxhere.com/photos/e3/aa/pocket_watch_time_clock_time_of_old_hours_clock_face_nostalgia-1186866.jpg!d</div>
     <button>Шаблон для скриншота</button>
             </div>
         </div>
         </section>
-        <script src="posterEditor.js"></script>
     </main>
+        <script src="posterEditor.js"></script>
 </body>
 
 </html>

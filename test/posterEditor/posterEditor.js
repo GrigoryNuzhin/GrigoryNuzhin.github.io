@@ -1,5 +1,7 @@
 var content = document.querySelector(".col-md-12");
-replaceBg(content.querySelector(".poster"), "default_bg.jpg");
+// replaceBg(content.querySelector(".poster"), "default_bg.jpg"); // Если закоментировать то не будет работать, создания скриншетов.
+
+starPoster();
 
 /* Работа с текстом */
 var divEdit = content.querySelector("div.edit");
@@ -49,6 +51,15 @@ document.querySelector("button").onclick = function(){
 
 /* Блок функций */
 
+function starPoster(){
+	var arrHref = document.querySelector(".imgListHref").textContent.split("\n");
+	replaceBg(content.querySelector(".poster"), arrHref[ramdomIndxeArray(arrHref)].trim());
+	
+	function ramdomIndxeArray(arr){
+		return Math.floor(Math.random()*arr.length);
+	}
+}
+
 function nav(){
 	var index = -1;
 	return{
@@ -82,7 +93,7 @@ function placeholder(elem){
 function controlFormatText(elem){
 	var textLenth = elem.textContent.length;
 	if(textLenth<104){		
-		elem.style.fontSize = "38px";
+		elem.style.fontSize = "36px"; // "38px"
 		elem.style.lineHeight = "44px";
 		
 	} else if(textLenth<160){		
@@ -105,6 +116,26 @@ function controlFormatText(elem){
 		elem.style.lineHeight = "19px";
 	}
 }
+
+
+document.getElementById("btn-download").addEventListener("click", function(e) {
+    makeScreenshot(".poster");
+});
+
+
+function makeScreenshot(contentImg) {
+// Размеры div элемента, зависят от настройки css.
+    html2canvas(document.querySelector(contentImg), { allowTaint: true, useCORS: false }).then(contentImgCanvas => {
+        var canavasElems = document.querySelectorAll("canvas");
+        
+        for (var i = 0; i < canavasElems.length; i++) {
+            canavasElems[i].remove();
+        }
+
+        document.querySelector(".poster").appendChild(contentImgCanvas);       
+    });
+
+};
 
 /* Конец блока работы с текстом */
 
